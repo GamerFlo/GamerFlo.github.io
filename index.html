@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/styles/style.css">
+  <title>Point Idle</title>
+</head>
+<body>
+  <div class="ui-section">
+    <h2 id="points">Points: 0.00</h2>
+    <div id="gain"></div><br>
+    <div class="button" id="upgrade" onclick="buy(0)">Upgrade</div><br>
+    (Buying upgrades always buys the maximum amount, and you only pay for the last level.)
+    <div class="progress">
+      <div class="bar" id="resetBar"></div>
+    </div>
+    <div class="button" id="prestige" onclick="prestige()">Prestige</div>
+    <div class="button" id="autoBuy" onclick="buy(1)">Automatically buy upgrades.</div>
+    <div class="button" id="qol1" onclick="buy(2)">Upgrades no longer cost points</div>
+    <br><input type="checkbox" name="" id="autoPrestige">Auto-Prestige
+  </div>
+
+  <div class="ui-section">
+    <h2>Formulas</h2>
+    Upgrade effect: 1.150^lvl<br>
+    Upgrade cost: 10*1.200^lvl<br>
+    Best points multi: log10(best points)-5^1.5<br>
+    Best time multi (if best time is under 2 hours): log2(7200/best time)<br>
+    Best time multi (if best time is under 10 seconds): log2(7200/best time)^2
+  </div>
+
+  <div class="ui-section">
+    <h2>Options</h2>
+    <div class="button" onclick="exportSave()">Export Save</div>
+    <input type="file" id="importSaveInput" style="display: none;" onchange="importSave(event)">
+    <div class="button" onclick="document.getElementById('importSaveInput').click()">Import Save</div>
+    <div class="button danger" onclick="resetProgress()">HARD RESET</div>
+  </div>
+
+  <div id="offlineModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">X</span>
+      <p id="offlineEarningsText"></p>
+    </div>
+  </div>
+</body>
+<script src="src/utils/bignum.js"></script>
+<script src="src/utils/format.js"></script>
+<script src="src/app.js"></script>
+</html>

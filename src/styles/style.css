@@ -1,0 +1,137 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to top,#003f5b, #0078d7);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #000;
+  margin: 0;
+  padding: 20px;
+  user-select: none;
+  min-height: 1282px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  color: #0078d7; /* Windows blue */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dcdcdc;
+}
+
+.button {
+  background-color: #0078d7; /* Windows blue */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  min-width: 240px;
+}
+
+.button:hover {
+  background-color: #005a9e; /* Darker Windows blue */
+}
+
+.button.locked {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.button.bought {
+  background-color: slateblue;
+  cursor: default;
+}
+
+.button.danger {
+  background-color: crimson;
+  cursor: pointer;
+}
+
+.progress {
+  width: 100%;
+  height: 50px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.bar {
+  height: 100%;
+  width: 0;
+  background-color: #0078d7;
+  transition: width 0.1s ease;
+  text-align: center;
+  color: white;
+}
+
+.locked {
+  color: gray;
+  cursor: not-allowed;
+}
+
+.ui-section {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ui-section h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 600px;
+  text-align: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}

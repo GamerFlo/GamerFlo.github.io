@@ -1,6 +1,10 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const DATA_FILE = path.join(__dirname, 'data.json');
 
 // Middleware to parse JSON and text data
 app.use(express.json());
@@ -9,6 +13,29 @@ app.use(express.text());
 // In-memory data storage
 let dataStore = [];
 let nextId = 1;
+
+// Load data from file on startup
+function loadData() {
+  if (fs.existsSync(DATA_FILE)) {
+    try {
+      const raw = fs.readFileSync(DATA_FILE, 'utf8');
+      const arr = JSON.parse(raw);
+      dataStore = Array.isArray(arr) ? arr : [];
+      nextId = dataStore.length > 0 ? Math.max(...dataStore.map(d => d.id)) + 1 : 1;
+    } catch (err) {
+      console.error('Error loading data:', err);
+      dataStore = [];
+      nextId = 1;
+    }
+  }
+}
+
+// Save data to file
+function saveData() {
+  fs.writeFileSync(DATA_FILE, JSON.stringify(dataStore, null, 2));
+}
+
+loadData();
 
 // Helper function to find data by ID
 const findDataById = (id) => {
@@ -42,6 +69,7 @@ app.post('/data', (req, res) => {
     };
     
     dataStore.push(newData);
+    saveData();
     
     res.status(201).json({
       success: true,
@@ -99,6 +127,7 @@ app.put('/data/:id', (req, res) => {
     data.data = req.body;
     data.type = typeof req.body === 'string' ? 'text' : 'json';
     data.lastModified = new Date().toISOString();
+    saveData();
     
     res.json({
       success: true,
@@ -126,6 +155,7 @@ app.delete('/data/:id', (req, res) => {
   }
   
   const deletedData = dataStore.splice(dataIndex, 1)[0];
+  saveData();
   
   res.json({
     success: true,

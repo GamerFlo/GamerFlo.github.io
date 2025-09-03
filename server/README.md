@@ -24,6 +24,7 @@ A lightweight Node.js backend server for storing and managing data (JSON or text
 ```bash
 git clone https://github.com/GamerFlo/GamerFlo.github.io.git
 cd GamerFlo.github.io
+cd server
 ```
 
 2. Install dependencies:
